@@ -1,16 +1,19 @@
-requirejs.config({
+require.config({
     paths: {
         'jquery': 'libs/jquery',
         'underscore': 'libs/underscore',
         'backbone': 'libs/backbone'
-    }
+    },
+
     shim: {
-        'libs/underscore': {
-            exports: '_'
-        },
-        'libs/backbone': {
-            deps: ['libs/underscore', 'libs/jquery'],
+        'backbone': {
+            deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         }
     }
+});
+
+require(['backbone'], function(Backbone) {
+    // Just to confirm it works.
+    console.log(new Backbone.Model);
 });
